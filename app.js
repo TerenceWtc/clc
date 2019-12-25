@@ -17,7 +17,7 @@ var loggerDebug = log4js.getLogger('console')
 // Authentication
 app.use((req, res, next) => {
   loggerDebug.debug('api url:', req.url)
-  loggerDebug.debug('request body:', req.body)
+  // loggerDebug.debug('request body:\n', req.body)
   let accessToken = req.headers.authorization
   loggerDebug.debug('token:', accessToken)
   if (verify(accessToken)) {

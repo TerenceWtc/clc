@@ -3,38 +3,30 @@ var awsConfig = require('./aws-config');
 var log4js = require('../log/log-config')
 var logger = log4js.getLogger('console')
 
-var upload = (body) => {
-  let keyName = body.srGuid + '/' + body.attachments[0].attachmentName
-  let params = {Bucket: awsConfig.bucketName, Key: keyName, Body: body.attachments[0].attachment}
-  return new Promise((resolve, reject) => {
-    aws.s3.putObject(params, (err, data) => {
-      if (err) {
-        logger.error(err)
-        resolve(false)
-      } else {
-        logger.debug('Successfully uploaded data to ' + awsConfig.bucketName + '/' + keyName)
-        logger.debug(data)
-        resolve(true)
-      }
-    })
+var upload = async (key, attachment) => {
+  let params = {Bucket: awsConfig.bucketName, Key: key, Body: Buffer.from(attachment, 'base64')}
+  return await aws.s3.upload(params).promise().then((data, err) => {
+    if (err) {
+      logger.error(err)
+      return false
+    } else {
+      logger.debug('Successfully uploaded data to ' + awsConfig.bucketName + '/' + key)
+      logger.debug(data)
+      return true
+    }
   })
 }
 
-var deleteAttachment = (body) => {
-  let params = {
-    Bucket: awsConfig.bucketName,
-    Key: body.srGuid
-  }
-  return new Promise(resolve => {
-    aws.s3.deleteObject(params, (err, data) => {
-      if (err) {
-        logger.error(err)
-        resolve(false)
-      } else {
-        logger.debug(data)
-        resolve(true)
-      }
-    })
+var deleteAttachment = async (key) => {
+  let params = {Bucket: awsConfig.bucketName,  Key: key}
+  return await aws.s3.deleteObject(params).promise().then((data, err) => {
+    if (err) {
+      logger.error(err)
+      return false
+    } else {
+      logger.debug(data)
+      return true
+    }
   })
 }
 

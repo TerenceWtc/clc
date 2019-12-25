@@ -6,23 +6,12 @@
 @token = 123
 
 
-
 ### 调用/attachments/upload接口
 POST {{http}}://{{host}}/{{pre-path}}/attachments/upload
 Content-Type: application/json
 Authorization: 'Bearer {{token}}'
 
-{
-  "srGuid": "001",
-  "attachments": [
-    {
-      "attachmentType": "xls",
-      "attachment": "test",
-      "attachmentName": "ISE_Attachment workbook.xls",
-      "attachmentDesc": "Attachment 5"
-    }
-  ]
-}
+< ./test/json/upload.json
 
 
 
@@ -32,11 +21,11 @@ Content-Type: application/json
 Authorization: 'Bearer {{token}}'
 
 {
-  "srGuid": "test001",
+  "srGuid": "001",
   "attachments": [
     {
-      "attachmentType": "xlsx",
-      "attachmentName": "text"
+      "attachmentType": "xls",
+      "attachmentName": "ISE_Attachment workbook1.txt"
     }
   ]
 }

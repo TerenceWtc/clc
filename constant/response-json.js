@@ -1,6 +1,16 @@
-var success = {
+var success_upload = {
+  'status': '200',
+  'message': {'success': 'Upload Successful.'}
+}
+
+var success_delete = {
   'status': '200',
   'message': {'success': 'Delete Successful.'}
+}
+
+var success_create = {
+  'status': '200',
+  'message': {'pending': 'SR creation in process.'}
 }
 
 var forbidden = {
@@ -14,7 +24,9 @@ var error = {
 }
 
 module.exports = {
-  success: success,
+  success_upload: success_upload,
+  success_delete: success_delete,
+  success_create: success_create,
   forbidden: forbidden,
   error: error
 }
