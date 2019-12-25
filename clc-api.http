@@ -1,0 +1,89 @@
+@localhost = localhost
+@localport = 5555
+@http = http
+@host = {{localhost}}:{{localport}}
+@pre-path = clc/api/v1/service-request
+@token = 123
+
+
+
+### 调用/attachments/upload接口
+POST {{http}}://{{host}}/{{pre-path}}/attachments/upload
+Content-Type: application/json
+Authorization: 'Bearer {{token}}'
+
+{
+  "srGuid": "001",
+  "attachments": [
+    {
+      "attachmentType": "xls",
+      "attachment": "test",
+      "attachmentName": "ISE_Attachment workbook.xls",
+      "attachmentDesc": "Attachment 5"
+    }
+  ]
+}
+
+
+
+### 调用/attachments/delete接口
+POST {{http}}://{{host}}/{{pre-path}}/attachments/delete
+Content-Type: application/json
+Authorization: 'Bearer {{token}}'
+
+{
+  "srGuid": "test001",
+  "attachments": [
+    {
+      "attachmentType": "xlsx",
+      "attachmentName": "text"
+    }
+  ]
+}
+
+
+
+### 调用/create接口
+POST {{http}}://{{host}}/{{pre-path}}/create
+Content-Type: application/json
+Authorization: 'Bearer {{token}}'
+
+{
+  "srGuid": "",
+  "srNumber": "",
+  "contactId": "",
+  "objectId": "",
+  "assetId": "",
+  "summary": "",
+  "description": "",
+  "errorNotes": "",
+  "massSpec": "",
+  "skipExitCheck": "",
+  "problemCode": "",
+  "complaintType": "",
+  "softwareVersion": "",
+  "serviceGroup": "",
+  "reagent": "",
+  "equipment": "",
+  "firstName": "",
+  "lastName": "",
+  "emailId": "",
+  "attachments": [
+    {
+      "attachmentType": "",
+      "attachment": "",
+      "attachmentName": "",
+      "attachmentDesc": ""
+    }
+  ]
+}
+
+
+
+### 调用/create/internal接口
+POST {{http}}://{{host}}/{{pre-path}}/create/internal
+Content-Type: application/json
+
+{
+  "srGuid": ""
+}
