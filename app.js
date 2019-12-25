@@ -3,7 +3,7 @@ const app = express();
 var router = require("./router/router")
 var bodyParser = require('body-parser')
 var log4js = require('./log/log-config');
-var sendResponse = require('./services/send-response')
+var sendResponse = require('./utils/send-response')
 
 app.use(bodyParser.urlencoded({limit:'50mb', extended: true}))
 app.use(bodyParser.json({limit:'50mb'}));

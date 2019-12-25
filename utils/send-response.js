@@ -1,4 +1,4 @@
-var responseJson = require('./response-json')
+var responseJson = require('../constant/response-json')
 
 var sendResponse =  (response, result) => {
   response.status(responseJson[result].status)

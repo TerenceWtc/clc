@@ -1,7 +1,7 @@
 var express = require("express");
 const router = express.Router();
 var serviceRequest = require("../services/service-request")
-var sendResponse = require('../services/send-response')
+var sendResponse = require('../utils/send-response')
 
 /**
  * 3.3.1 upload attachments
